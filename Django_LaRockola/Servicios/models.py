@@ -16,14 +16,22 @@ class Usuario(models.Model):
     def __str__(self):
         return self.Name
 
+class GeneroMusical(models.Model):
+    GenderName = models.CharField(max_length=200, null= True, blank= True)
+    
+    def __str__(self):
+        return self.GenderName
+
 class Canciones(models.Model):
     Artist = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    GenderSong = models.ForeignKey(GeneroMusical, default="0", on_delete=models.CASCADE)
     SongName = models.CharField(max_length=200, null = True, blank = True)
-    Gender = models.CharField(max_length=200, null = True, blank = True)
     AvatarSong = models.ImageField(null = True, blank = True)
 
     def __str__(self):
         return self.SongName
+
+
 
 
 
