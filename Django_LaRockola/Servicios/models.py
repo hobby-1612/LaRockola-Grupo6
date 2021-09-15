@@ -25,11 +25,19 @@ class GeneroMusical(models.Model):
 class Canciones(models.Model):
     Artist = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     GenderSong = models.ForeignKey(GeneroMusical, default="0", on_delete=models.CASCADE)
-    SongName = models.CharField(max_length=200, null = True, blank = True)
+    SongName = models.CharField(max_length=200, default="Unknow" , null = True, blank = True)
     AvatarSong = models.ImageField(null = True, blank = True)
+    Views = models.IntegerField(default=0, null = True, blank = True)
+
+    #Agregarmos vistas cada que se abra la cancion
+    def AddViews(self):
+        self.Views+=1
+        self.save()
 
     def __str__(self):
         return self.SongName
+
+    
 
 
 
