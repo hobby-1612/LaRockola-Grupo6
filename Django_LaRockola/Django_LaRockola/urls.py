@@ -17,9 +17,9 @@ from django import urls
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-#from Servicios.views import Prueba
+from Servicios.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('servicios/', include('Servicios.urls')),
+    path('servicios/api/', include('Servicios.urls')),
 ]
