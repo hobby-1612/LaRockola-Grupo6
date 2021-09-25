@@ -1,15 +1,31 @@
-from django.db.models.indexes import Index
-from django.http.response import FileResponse
-from django.shortcuts import render
-from django.http import HttpResponse
+
 from rest_framework import viewsets
 from Servicios.serializers import *
+from Servicios.permissions import *
+from rest_framework.response import Response
+from rest_framework import authentication
+from rest_framework.status import HTTP_400_BAD_REQUEST
+from django.shortcuts import get_object_or_404
 
 # Create your views here. Logica del Bakc end
+"""class UsuarioAPI(viewsets.ModelViewSet):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated, AccesoPerfil)
+    serializer_class = UserSerializer
+    queryset = get_user_model().objects.all()"""
+
+class ProfileAPI (viewsets.ModelViewSet):
+    #authentication_classes = (authentication.SessionAuthentication,)
+    #permission_classes = (permissions.IsAuthenticated, AccesoPerfil)
+    serializer_class = ProfileSerializer
+    queryset = Perfil.objects.all()
 
 class UserSeriAPI(viewsets.ModelViewSet):
+    #authentication_classes = (authentication.SessionAuthentication,)
+    #permission_classes = (permissions.IsAuthenticated, AccesoPerfil)
     serializer_class = UserSerializer
-    queryset = Usuario.objects.all()
+    queryset = User.objects.all()
+
 
 class SongsSeriAPI(viewsets.ModelViewSet):
     serializer_class = SongsSerializer

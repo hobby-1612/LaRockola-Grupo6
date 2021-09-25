@@ -5,13 +5,20 @@ from django.utils.timezone import *
 
 # Create your models here. Conexion base de datos
 
-class Usuario(models.Model):
-    Name = models.CharField(max_length=200)
+class User(models.Model):
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200, null = True, blank = True)
+    email = models.EmailField(null = True, blank = True)
+    
+    def __str__(self):
+        return self.username
+
+class Perfil(models.Model):
+    Name = models.ForeignKey(User, on_delete=models.CASCADE)
     LastName = models.CharField(max_length=200, null = True, blank = True)
     UserName = models.CharField(max_length=200, null = True, blank = True)
     BirthDay = models.DateField(null = True, blank = True)
     Avatar = models.ImageField(null = True, blank = True)
-    Email = models.EmailField(null = True, blank = True)
     
     def __str__(self):
         return self.Name
@@ -23,7 +30,7 @@ class GeneroMusical(models.Model):
         return self.GenderName
 
 class Canciones(models.Model):
-    Artist = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    Artist = models.ForeignKey(User, on_delete=models.CASCADE)
     GenderSong = models.ForeignKey(GeneroMusical, default="0", on_delete=models.CASCADE)
     SongName = models.CharField(max_length=200, default="Unknow" , null = True, blank = True)
     AvatarSong = models.ImageField(null = True, blank = True)

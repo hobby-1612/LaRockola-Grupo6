@@ -7,6 +7,7 @@ router = DefaultRouter()
 router.register('usuarios', UserSeriAPI)
 router.register('listacanciones', SongsSeriAPI)
 router.register('generos', GenderSeriAPI)
+router.register('perfiles', ProfileAPI)
 
 
 urlpatterns = [
