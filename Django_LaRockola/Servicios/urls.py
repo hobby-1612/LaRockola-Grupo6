@@ -12,5 +12,8 @@ router.register('perfiles', ProfileAPI)
 
 urlpatterns = [
     #path('ejemplo', Prueba)
-    path('crud/', include(router.urls))
+    path('crud/', include(router.urls)),
+    path('register', RegisterAPI.as_view()),
+    path('login', LoginAPI.as_view()),
+    path('logout', LogoutAPI.as_view())
 ]
