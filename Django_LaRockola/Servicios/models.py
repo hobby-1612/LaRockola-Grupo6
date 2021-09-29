@@ -11,7 +11,7 @@ class User(models.Model):
     email = models.EmailField(null = True, blank = True)
     
     def __str__(self):
-        return self.username
+        return str(self.username)
 
 class Perfil(models.Model):
     Name = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,6 +19,7 @@ class Perfil(models.Model):
     UserName = models.CharField(max_length=200, null = True, blank = True)
     BirthDay = models.DateField(null = True, blank = True)
     Avatar = models.ImageField(null = True, blank = True)
+    IsMusician = models.BooleanField(default=False)
     
     def __str__(self):
         return self.Name
